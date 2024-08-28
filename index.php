@@ -1,0 +1,58 @@
+<?php
+require_once './yigilma/navbar.php';
+require_once './database.php';
+
+$statament = $pdo->prepare('SELECT * FROM oquv');
+$statament->execute();
+$posts = $statament->fetchAll();
+
+?>
+
+<main class="site-main">
+    <br>
+    <br>
+    <br>
+
+<div class="container bg-light p-5">
+
+    <table class="table table-dark table-striped">
+        <thead>
+        <tr>
+            <th scope="col">#Id</th>
+            <th scope="col">Ismi</th>
+            <th scope="col">Familyasi</th>
+            <th scope="col">yoshi</th>
+            <th scope="col">Nomer</th>
+            <th scope="col">Manzil</th>
+
+
+        </tr>
+        </thead>
+    <?php foreach ($posts as $post): ?>
+        <tbody>
+        <tr>
+            <th scope="row"><?= $post['id'] ?></th>
+            <td><?= $post['ismi'] ?></td>
+            <td><?= $post['familyasi'] ?></td>
+            <td><?= $post['yoshi'] ?></td>
+            <td><?= $post['Nomer'] ?></td>
+            <td><?= $post['Manzil'] ?></td>
+            <td>
+                <a href="./edit.php" class="btn btn-info">Edit</a>
+                <a href="#" class="btn btn-danger">Delete</a>
+                <a href="#" class="btn btn-dark">Update</a>
+
+            </td>
+        </tr>
+
+        </tbody>
+        <?php endforeach; ?>
+    </table>
+
+</div>
+</main>
+
+<?php
+require_once './yigilma/footer.php';
+
+?>
